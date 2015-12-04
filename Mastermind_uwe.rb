@@ -13,11 +13,11 @@ class Mastermind
     @versuche = 10
     @range = (0..9)
 
-    @sample = create_rand
+    @sample = create_rand()
   end
 
   def create_rand
-    @range.to_a.sample(@felder)
+    @range.to_a.sample(@felder).to_s
   end
 
   def try(tipp)
@@ -52,7 +52,7 @@ class Mastermind
     i = 0
     @felder.times do
 
-      black_hits += 1 if string[i].to_i == sample[i]
+      black_hits += 1 if string[i].to_i == sample[i].to_i
       i += 1
     end
 
@@ -69,26 +69,32 @@ class Mastermind
       i += 1
     end
 
-    white_hits - self.black_hits(string, sample)
+    puts black = black_hits(string, sample)
+    puts white_hits - black
+    
+    return white_hits - black
 
   end
 end
 
 mm = Mastermind.new()
 
-winner = ""
+puts mm.black_hits("1122", "1122")
 
-# nur ein Beispiel, wie ein Script aussehen koennte
-(1..10).each {
-
-  p mm.sample
-  tipp = gets.chomp
-
-  if mm.try(tipp) == "XXXX"
-
-    puts "Gewonnen!!"
-    break
-  end
-
-}
+#winner = ""
+#
+## nur ein Beispiel, wie ein Script aussehen koennte
+#while true
+#
+#  p mm.sample
+#  tipp = gets.chomp
+#
+#  puts mm.try(tipp)
+#  if mm.try(tipp) == "XXXX"
+#
+#    puts "Gewonnen!!"
+#    break
+#  end
+#
+#end
 
