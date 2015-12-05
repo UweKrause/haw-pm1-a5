@@ -40,6 +40,7 @@ begin
     win.setpos(oz + i, os)
 
     # gibt die Eingabe und zusaetzlich die Auswertung aus
+    # TODO: Auswertung nicht nur simulieren
     win << a + " [XXOO]"
 
   }
