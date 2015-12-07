@@ -2,7 +2,7 @@
 # Author:: Uwe Krause
 require_relative 'mastermind_uwe'
 
-mm = Mastermind.new(1)
+mm = Mastermind.new("1234")
 # 1=> 1234
 
 anzahl_versuche = 10
