@@ -112,30 +112,75 @@ class MastermindSolver
     }
 
     # wenn nicht innerhalb der vorgegebene Versuche geschafft
-    return false if anzahl_versuche >= @versuche
+    return -1 if anzahl_versuche >= @versuche
 
   end
 
+  def manuell()
+    # 1 initialize
+    # 2 waehle code
+    # 3 frage Treffer ab
+    # 4 Gewonnen?
+    # 5 Entferne ungueltige Codes
+    # 6 Goto 2
+
+    anzahl_versuche = 0
+
+    @versuche.times {
+
+      anzahl_versuche += 1
+
+      p pruefcode = waehle_einen_code!()
+      p treffer = frage_treffer_ab_manuell(pruefcode)
+
+      if gewonnen?(treffer, @felder)
+
+        # bricht aus der Schleife aus
+        return anzahl_versuche
+
+      end
+
+      entferne_codes!(pruefcode, treffer[0], treffer[1], @alle_moeglichen_codes)
+
+      # und wieder von vorn, huuuui
+    }
+
+    # wenn nicht innerhalb der vorgegebene Versuche geschafft
+    return -1 if anzahl_versuche >= @versuche
+
+  end
+
+  def frage_treffer_ab_manuell(code)
+    #[schwarz.size, weiss.size, hits_to_s(schwarz.size, weiss.size)]
+    puts "B,W?"
+    benutzereingabe = gets.chomp
+
+    [benutzereingabe[0].to_i, benutzereingabe[2].to_i]
+  end
 end
 
 ## Soll durchschnitt berechnet werden?
-durchschnitt_berechnen = false
-# macht nur sinn, wenn ein fester Wert vorgegebe wird
-durchschnitt_berechnen ? durchschnitt_vorgabe = "1234" : nil
+#durchschnitt_berechnen = false
+## macht nur sinn, wenn ein fester Wert vorgegebe wird
+##durchschnitt_berechnen ? durchschnitt_vorgabe = "1234" : nil
+#
+#versuche_gesamt = []
+#versuche_gesamt_anzahl = 10
+#
+#versuche_gesamt_anzahl.times do
+#  mms = MastermindSolver.new(durchschnitt_vorgabe)
+#
+#  versuche = mms.automatisiere
+#  versuche_gesamt << versuche
+#  puts "(#{mms.mm}) Gewonnen in #{versuche} Versuchen"
+#end
 
-versuche_gesamt = []
-versuche_gesamt_anzahl = 10
+#if durchschnitt_berechnen
+#  durchschnitt =  versuche_gesamt.inject(0.0) { |sum, el| sum + el } / versuche_gesamt.size
+#  puts "Durchschnittliche Versuche bei #{versuche_gesamt_anzahl} Durchlaeufen: #{durchschnitt}"
+#end
 
-versuche_gesamt_anzahl.times do
-  mms = MastermindSolver.new(durchschnitt_vorgabe)
 
-  versuche = mms.automatisiere
-  versuche_gesamt << versuche
-  puts "(#{mms.mm}) Gewonnen in #{versuche} Versuchen"
-end
+mms = MastermindSolver.new()
 
-if durchschnitt_berechnen
-  durchschnitt =  versuche_gesamt.inject(0.0) { |sum, el| sum + el } / versuche_gesamt.size
-  puts "Durchschnittliche Versuche bei #{versuche_gesamt_anzahl} Durchlaeufen: #{durchschnitt}"
-end
-
+  versuche = mms.manuell
