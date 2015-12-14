@@ -1,9 +1,12 @@
+# Der Computer loest das Mastermind Raetsel
+# Author:: Lucas Anders
+# Author:: Uwe Krause
+
 require_relative 'mastermind'
 
-# die Klasse loest das Mastermind-Game mit Hilfe des Computers
-#
+# Der Computer spielt Mastermind auf dem Spielfeld
 class Mastermind_Solver
-
+  # Fuer Script
   attr_reader :solved
   def initialize(sample = nil)
     @mastermind = Mastermind.new(sample)
@@ -14,7 +17,7 @@ class Mastermind_Solver
     @solved = false
   end
 
-  #generiert den nächsten Tipp
+  # generiert den nächsten Tipp
   def next_try
     if @last_guess == nil
       next_guess = @mastermind.create_rand()
@@ -22,23 +25,23 @@ class Mastermind_Solver
       next_guess = @left[rand(@left.length)]
     end
     @last_hits = @mastermind.try_attempt(next_guess)
-if @last_hits == [4,0]
-    @solved = true 
-    return "#{next_guess} \n Game Won!"
-end
+    if @last_hits == [4,0]
+      @solved = true
+      return "#{next_guess} \n Game Won!"
+    end
     @last_guess = next_guess
     update_possible
     return "#{next_guess} \n #{@mastermind.hits_to_s(@last_hits)}"
   end
 
-  #erzeugt ein Array, das alle möglichen Tipps enthaelt
+  # erzeugt ein Array, das alle möglichen Tipps enthaelt
   def possible_guesses()
     range = (0..9)
     possible = range.to_a.permutation(4).to_a
     return possible
   end
 
-  #löscht abhängig von den letzten Hits und den Übereinstimmungen zwischen zwei Tipps alle nicht möglichen Tipps aus dem Array
+  # loescht abhängig von den letzten Hits und den Übereinstimmungen zwischen zwei Tipps alle nicht möglichen Tipps aus dem Array
   def update_possible
     #falls es keine Hits gibt, werden ale Tipps geloescht, die eine der Ziffern enthalten
     if (@last_hits == [0,0])

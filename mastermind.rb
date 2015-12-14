@@ -2,17 +2,17 @@
 # Author:: Lucas Anders
 # Author:: Uwe krause
 
-# Die Mastermind-Klasse stellt das Spielfeld dar.
-# Attribute sind gleichzeitig die Regeln des Spiels:
-# Anzahl der Felder auf dem Spielfeld,
-# Anzahl der erlaubten Versuche,
+# Die Mastermind-Klasse stellt das Spielfeld dar.<br>
+# Attribute sind gleichzeitig die Regeln des Spiels:<br>
+# Anzahl der Felder auf dem Spielfeld,<br>
+# Anzahl der erlaubten Versuche,<br>
 # Zahlraum der Moeglichkeiten ("Farben")
 class Mastermind
   # Fuer Debugging / Testfaelle
   attr_reader :sample
   
-  # Generiert das Spielfeld
-  # Wenn mit (gueltigem) Parameter aufgerufen, wird ein zu erratener Code festgelegt
+  # Generiert das Spielfeld<br>
+  # Wenn mit (gueltigem) Parameter aufgerufen, wird ein zu erratener Code festgelegt<br>
   # Ansonsten wird einer generiert
   def initialize(sample = nil)
     # Spielregelvariablen hier:
@@ -28,9 +28,9 @@ class Mastermind
     check_attempt(sample) ? @sample = sample : @sample = create_rand(sample)
   end
 
-  # Ein Spielzug des Spielers,
-  # Verbraucht einen Spielzug
-  # Liefert die Anuahl der Treffer zurueck
+  # Ein Spielzug des Spielers,<br>
+  # Verbraucht einen Spielzug<br>
+  # Liefert die Anzahl der Treffer zurueck
   def try_attempt(guess)
     raise ArgumentError unless check_attempt(guess)
     raise ArgumentError if @attempts >= @attempts_max
@@ -51,9 +51,9 @@ class Mastermind
     return true
   end
 
-  # erzeugt einen zufaelligen Tipp
-  # es kann eine Zahl uebergeben werden, um einen gewuenschten Tipp zu erzeugen
-  # Entweder Uebergabe eines gueltigen, 4-stelligen Wertes
+  # erzeugt einen zufaelligen Tipp<br>
+  # es kann eine Zahl uebergeben werden, um einen gewuenschten Tipp zu erzeugen<br>
+  # Entweder Uebergabe eines gueltigen, 4-stelligen Wertes<br>
   # Oder Uebergabe eines der vorgegebenen Integer fuer Standard-Werte
   def create_rand(seed = nil)
     seeds = {
@@ -72,7 +72,7 @@ class Mastermind
     return ary
   end
 
-  # Ermittelt die korrekte Zahl von schwarzen und Weissen Treffern
+  # Ermittelt die korrekte Zahl von schwarzen und Weissen Treffern<br>
   # Gibt Array zurueck [int Schwarz, int Weiss, str String]
   def hits(tipp, sample = @sample)
     white_hits = 0
