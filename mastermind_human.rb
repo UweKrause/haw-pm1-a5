@@ -1,6 +1,6 @@
 require_relative 'mastermind'
 
-# Spielt Mastermind Mensch gegen Maschine
+# Spielt Mastermind Mensch gegen Maschine<br>
 # Die Klasse uebergibt die Eingaben des Nutzers an en Computer
 # Author:: Lucas Anders
 # Author:: Uwe Krause
@@ -11,7 +11,7 @@ class Mastermind_Human
     @solved = false
   end
 
-  #liest den naechsten Tipp ein und uebergibt diesen an den Computer
+  #liest den naechsten Tipp ein und uebergibt diesen an den Computer<br>
   #liefert dem Nutzer Feedback abhaengig von den Hits
   def next_try
     hits = @mastermind.try_attempt(get_input())
