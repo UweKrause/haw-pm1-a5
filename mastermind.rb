@@ -35,7 +35,6 @@ class Mastermind
     raise ArgumentError if @attempts >= @attempts_max
 
     @attempts += 1
-    puts @attempts
     return hits(guess)
   end
 
