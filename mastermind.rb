@@ -1,7 +1,19 @@
 # Mastermind Hauptklasse
 # Author:: Lucas Anders
+# Author:: Uwe krause
+
+# Die Mastermind-Klasse stellt das Spielfeld dar.
+# Attribute sind gleichzeitig die Regeln des Spiels:
+# Anzahl der Felder auf dem Spielfeld,
+# Anzahl der erlaubten Versuche,
+# Zahlraum der Moeglichkeiten ("Farben")
 class Mastermind
+  # Fuer Debugging / Testfaelle
   attr_reader :sample
+  
+  # Generiert das Spielfeld
+  # Wenn mit (gueltigem) Parameter aufgerufen, wird ein zu erratener Code festgelegt
+  # Ansonsten wird einer generiert
   def initialize(sample = nil)
     # Spielregelvariablen hier:
     @digits = 4
@@ -16,7 +28,9 @@ class Mastermind
     check_attempt(sample) ? @sample = sample : @sample = create_rand(sample)
   end
 
-  #prueft den Tipp
+  # Ein Spielzug des Spielers,
+  # Verbraucht einen Spielzug
+  # Liefert die Anuahl der Treffer zurueck
   def try_attempt(guess)
     raise ArgumentError unless check_attempt(guess)
 
@@ -24,6 +38,8 @@ class Mastermind
     return hits(guess)
   end
 
+  
+  # Ueberprueft uebergebene Parameter auf Gueltigkeit
   def check_attempt(guess)
     return false unless (guess.is_a?(Array) && guess.length == 4)
     return false if guess.uniq != guess
@@ -35,6 +51,8 @@ class Mastermind
 
   # erzeugt einen zufaelligen Tipp
   # es kann eine Zahl uebergeben werden, um einen gewuenschten Tipp zu erzeugen
+  # Entweder Uebergabe eines gueltigen, 4-stelligen Wertes
+  # Oder Uebergabe eines der vorgegebenen Integer fuer Standard-Werte
   def create_rand(seed = nil)
     seeds = {
       1 => [1,2,3,4],
@@ -52,7 +70,8 @@ class Mastermind
     return ary
   end
 
-  # ermittelt die Black Hits und White Hits zu einem Tipp
+  # Ermittelt die korrekte Zahl von schwarzen und Weissen Treffern
+  # Gibt Array zurueck [int Schwarz, int Weiss, str String]
   def hits(tipp, sample = @sample)
     white_hits = 0
     black_hits = 0
@@ -64,7 +83,7 @@ class Mastermind
     return[black_hits,white_hits - black_hits]
   end
 
-  # gibt die Hits in einer lesbaren Darstellung zurück
+  # gibt eine Menschenlesbare Darstellung der Treffer zurueck
   def hits_to_s(hits, digits = @digits)
     string = ""
     string += "_" * (digits - hits[0] - hits[1])

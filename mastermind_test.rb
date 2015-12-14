@@ -1,9 +1,12 @@
-require_relative 'mastermind_lucas'
-require_relative 'mastermind_human_lucas'
-require_relative 'mastermind_solver_third_try'
+require_relative 'mastermind'
+require_relative 'mastermind_human'
+require_relative 'mastermind_solver'
 require 'test/unit'
 
-#Author:: Lucas Anders
+# Author:: Lucas Anders
+# Author:: Uwe Krause
+
+
 class MastermindTest < Test::Unit::TestCase
   def setup
     @mastermind = Mastermind.new()

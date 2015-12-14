@@ -1,5 +1,5 @@
-require_relative 'mastermind_human_lucas'
-require_relative 'mastermind_solver_third_try'
+require_relative 'mastermind_human'
+require_relative 'mastermind_solver'
 
 #konvertiert die benutzereingabe zu einem Array, fuer den Computer-Solver
 def get_input

@@ -1,4 +1,4 @@
-require_relative 'mastermind_lucas'
+require_relative 'mastermind'
 
 # die Klasse loest das Mastermind-Game mit Hilfe des Computers
 #

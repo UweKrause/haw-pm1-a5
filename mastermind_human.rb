@@ -1,4 +1,4 @@
-require_relative 'mastermind_lucas'
+require_relative 'mastermind'
 
 #
 class Mastermind_Human
