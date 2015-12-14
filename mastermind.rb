@@ -10,7 +10,6 @@
 class Mastermind
   # Fuer Debugging / Testfaelle
   attr_reader :sample
-  
   # Generiert das Spielfeld<br>
   # Wenn mit (gueltigem) Parameter aufgerufen, wird ein zu erratener Code festgelegt<br>
   # Ansonsten wird einer generiert
@@ -40,7 +39,6 @@ class Mastermind
     return hits(guess)
   end
 
-  
   # Ueberprueft uebergebene Parameter auf Gueltigkeit
   def check_attempt(guess)
     return false unless (guess.is_a?(Array) && guess.length == 4)
