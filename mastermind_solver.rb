@@ -61,5 +61,4 @@ class Mastermind_Solver
     @left.delete_if{|x| (@last_hits[0] + @last_hits[1]) != (@mastermind.hits(@last_guess,x)[0]+@mastermind.hits(@last_guess,x)[1])}
 
   end
-
 end
