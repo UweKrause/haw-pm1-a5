@@ -33,8 +33,10 @@ class Mastermind
   # Liefert die Anuahl der Treffer zurueck
   def try_attempt(guess)
     raise ArgumentError unless check_attempt(guess)
+    raise ArgumentError if @attempts >= @attempts_max
 
     @attempts += 1
+    puts @attempts
     return hits(guess)
   end
 
