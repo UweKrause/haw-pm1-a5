@@ -43,4 +43,12 @@ class MastermindTest < Test::Unit::TestCase
     assert_equal([0,4], @mastermind.hits([4,3,2,1]))
     assert_equal([0,2], @mastermind.hits([9,3,7,1]))
   end
+
+  #testet, ob das Spielnach 10 Versuchen beendet wird
+  def test_guess_limit
+    assert_raise do
+      15.times do @mastermind.try_attempt([3,6,8,5])
+      end
+    end
+  end
 end
