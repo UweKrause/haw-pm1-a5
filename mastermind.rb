@@ -1,3 +1,4 @@
+require_relative 'game_over'
 # Mastermind Hauptklasse
 # Author:: Lucas Anders
 # Author:: Uwe krause
@@ -19,12 +20,8 @@ class Mastermind
     @attempts_max = 10
     @attempts = 0
     @range = (0..9)
-    if check_attempt(sample)
-      @sample = sample
-    else
-      @sample = create_rand(sample)
-    end
-    check_attempt(sample) ? @sample = sample : @sample = create_rand(sample)
+    @sample = create_rand(sample)
+
   end
 
   # Ein Spielzug des Spielers,<br>
@@ -32,7 +29,7 @@ class Mastermind
   # Liefert die Anzahl der Treffer zurueck
   def try_attempt(guess)
     raise ArgumentError unless check_attempt(guess)
-    raise ArgumentError if @attempts >= @attempts_max
+    raise GameOver if @attempts >= @attempts_max
 
     @attempts += 1
     return hits(guess)
@@ -52,21 +49,22 @@ class Mastermind
   # es kann eine Zahl uebergeben werden, um einen gewuenschten Tipp zu erzeugen<br>
   # Entweder Uebergabe eines gueltigen, 4-stelligen Wertes<br>
   # Oder Uebergabe eines der vorgegebenen Integer fuer Standard-Werte
-  def create_rand(seed = nil)
-    seeds = {
-      1 => [1,2,3,4],
-      2 => [3,4,5,6]}
-    ary = []
-
-    if (seed != nil) && seeds.has_key?(seed) && @digits == 4
-      ary = seeds[seed]
-    else
+  def create_rand(sample = nil)
+    if sample == nil
+      ary = []
       while ary.length() < 4
         rand = rand(0..9)
         ary << rand unless ary.include?(rand)
       end
+      return ary
     end
-    return ary
+    ary = []
+    if check_attempt(sample)
+      return sample
+    else 
+      raise ArgumentError
+    end
+    
   end
 
   # Ermittelt die korrekte Zahl von schwarzen und Weissen Treffern<br>
