@@ -37,10 +37,11 @@ while mastermind.solved == false
   begin
     puts mastermind.next_try()
   rescue GameOver
-    puts "No more guesses left"
+    puts "Game Over"
     break
   rescue ArgumentError
     puts "invalid Number, please enter a Number with 4 digits, without duplicates"
+  rescue
   end
 end
 

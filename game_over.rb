@@ -1,5 +1,5 @@
 class GameOver < StandardError
-  def initialize(info)
+  def initialize(info = nil)
     @info = info
   end
 #  def message
