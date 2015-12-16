@@ -27,11 +27,20 @@ def durchschnittliche_versuche(anzahl)
 
 end
 
+# Erweitert die Arrayklasse um nuetzliche Funktionen
 class Array
+  # call-seq:
+  #   summe() => Float
+  #
+  # bildet die Summe
   def summe
     inject(0.0) { |result, el| result + el }
   end
 
+  # call-seq:
+  #   durchschnitt() => Float
+  #
+  # bildet den Durchschnitt
   def durchschnitt
     summe / size
   end
