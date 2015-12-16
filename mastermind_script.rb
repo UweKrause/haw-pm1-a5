@@ -1,6 +1,12 @@
 require_relative 'mastermind_human'
 require_relative 'mastermind_solver'
 
+# Dies ist das Script fuer das Spiel.
+# Auswahlmoeglichkeiten:
+# Mensch gegen Computer,
+# Computer gegen Computer
+# Author:: Lucas Anders
+
 #konvertiert die benutzereingabe zu einem Array, fuer den Computer-Solver
 def get_input
   puts ">"
@@ -26,6 +32,7 @@ while true
     end
     break
   elsif input.eql?("human")
+    puts "Playing Mastermind against the computer. Whats your try?"
     mastermind = Mastermind_Human.new()
     break
   else

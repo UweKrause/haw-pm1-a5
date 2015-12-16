@@ -1,15 +1,16 @@
-# Definiert Testfaelle fuer das Spielfeld
-# Author:: Lucas Anders
-# Author:: Uwe Krause
-
 require_relative 'mastermind'
 require_relative 'mastermind_human'
 require_relative 'mastermind_solver'
 require 'test/unit'
 
-class MastermindTest < Test::Unit::TestCase
+# Definiert Testfaelle fuer das Spielfeld
+# Author:: Lucas Anders
+
+class Mastermind_Test < Test::Unit::TestCase
+  # Definiert das Testbett
   def setup
     @mastermind = Mastermind.new([1,2,3,4])
+    @attempts_max = @mastermind.attempts_max
   end
 
   # Prueft, ob gueltige Versuche von ungueltigen Anfragen korrekt unterschieden werden
@@ -47,7 +48,7 @@ class MastermindTest < Test::Unit::TestCase
   # Testet, ob das Spiel nach der Festgelegten Anzahl von Versuchen abgebrochen wird
   def test_guess_limit
     assert_raise do
-      11.times do @mastermind.try_attempt([3,6,8,5])
+      (@attempts_max+1).times do @mastermind.try_attempt([3,6,8,5])
       end
     end
   end
